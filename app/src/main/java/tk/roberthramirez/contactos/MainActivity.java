@@ -56,18 +56,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
 
-        /*@Override
-        public boolean onCreateOptionsMenu (Menu menu){
-            getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
-            return true;
-        }
-
-        @Override
-        public boolean onOptionsItemSelected (@NonNull MenuItem item){
-            return super.onOptionsItemSelected(item);
-        }*/
-
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Fragment f;
