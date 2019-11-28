@@ -11,13 +11,16 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import tk.roberthramirez.contactos.clases_correo.Correo;
 import tk.roberthramirez.contactos.fragments.FragmentDetalle;
 import tk.roberthramirez.contactos.fragments.FragmentEnviados;
+import tk.roberthramirez.contactos.fragments.FragmentEnviar;
 import tk.roberthramirez.contactos.fragments.FragmentNoLeido;
 import tk.roberthramirez.contactos.fragments.FragmentPapelera;
 import tk.roberthramirez.contactos.fragments.FragmentRecibidos;
@@ -25,6 +28,7 @@ import tk.roberthramirez.contactos.fragments.FragmentSpam;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ICorreosListener {
+    private FloatingActionButton bFloating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +47,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
+        bFloating = findViewById(R.id.bFloating);
+        bFloating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentEnviar frag = new FragmentEnviar();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, frag).commit();
+                setTitle("Enviados");
+            }
+        });
     }
 
         public void onBackPressed () {
@@ -75,11 +87,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             f = new FragmentNoLeido();
             getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, f).commit();
             setTitle("No Leido");
-        } /*else if (id == R.id.miEnviar) {
-            f = new FragmentHerramientas();
+        } else if (id == R.id.miEnviar) {
+            f = new FragmentEnviar();
             getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, f).commit();
             setTitle("Herramientas");
-        }*/ else if (id == R.id.miSpam) {
+        } else if (id == R.id.miSpam) {
             f = new FragmentSpam();
             getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, f).commit();
             setTitle("Spam");

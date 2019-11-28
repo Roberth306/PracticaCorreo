@@ -5,7 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
-public class Correo implements Serializable {
+public class Correo implements Serializable, Comparable<Correo> {
     private String emisor;
     private String receptor;
     private String asunto;
@@ -87,5 +87,10 @@ public class Correo implements Serializable {
     public String fechaToString() {
         sdf = new SimpleDateFormat("dd MMM hh:mm");
         return sdf.format(this.enviadoEl.getTime());
+    }
+
+    @Override
+    public int compareTo(Correo o) {
+        return enviadoEl.compareTo(o.getEnviadoEl());
     }
 }

@@ -35,24 +35,35 @@ public class FragmentDetalle extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.detalle_fragment, container, false);
-
         Bundle correoB = getArguments();
         correo = (Correo)correoB.getSerializable("objeto");
-        String nameId = "c"+correo.getContacto().getId_foto();
-        int id = getContext().getResources().getIdentifier(nameId,"drawable", getContext().getPackageName());
+
+        ivContactoDetalle = layout.findViewById(R.id.ivContactoDetalle);
+        tvNombreContactoDetalle = layout.findViewById(R.id.tvNombreContactoDetalle);
+        tvApellidoContactoDetalle = layout.findViewById(R.id.tvApellidoContactoDetalle);
+
+        if (correo.getContacto() == null) {
+            ivContactoDetalle.setImageResource(R.drawable.unknown);
+            tvNombreContactoDetalle.setText("Privado");
+            tvApellidoContactoDetalle.setText("Privado");
+        }else {
+            String nameId = "c"+correo.getContacto().getId_foto();
+            int id = getContext().getResources().getIdentifier(nameId,"drawable", getContext().getPackageName());
+            ivContactoDetalle.setImageResource(id);
+            tvNombreContactoDetalle.setText(correo.getContacto().getName());
+            tvApellidoContactoDetalle.setText(correo.getContacto().getFirstSurname()+correo.getContacto().getSecondSurname());
+        }
+
 
         ivPerfilDetalle = layout.findViewById(R.id.ivPerfilDetalle);
         ivPerfilDetalle.setImageResource(R.drawable.unknown);
-        ivContactoDetalle = layout.findViewById(R.id.ivContactoDetalle);
-        ivContactoDetalle.setImageResource(id);
+
         tvNombrePerfilDetalle = layout.findViewById(R.id.tvNombrePerfilDetalle);
         tvNombrePerfilDetalle.setText(correo.getCuenta().getName());
-        tvNombreContactoDetalle = layout.findViewById(R.id.tvNombreContactoDetalle);
-        tvNombreContactoDetalle.setText(correo.getContacto().getName());
+
         tvApellidoPerfilDetalle = layout.findViewById(R.id.tvApellidoPerfilDetalle);
         tvApellidoPerfilDetalle.setText(correo.getCuenta().getFirstSurname());
-        tvApellidoContactoDetalle = layout.findViewById(R.id.tvApellidoContactoDetalle);
-        tvApellidoContactoDetalle.setText(correo.getContacto().getFirstSurname()+correo.getContacto().getSecondSurname());
+
 
         sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
         tvFechaDetalle = layout.findViewById(R.id.tvFechaDetalle);

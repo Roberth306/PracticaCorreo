@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import tk.roberthramirez.contactos.AdapatadorCorreos;
 import tk.roberthramirez.contactos.ICorreosListener;
@@ -40,7 +41,7 @@ public class FragmentRecibidos extends Fragment {
                 }
             }
             correos = new ArrayList<>();
-
+            Collections.sort(filtrador);
             for(Correo c : filtrador) {
                 correos.add(c);
             }
