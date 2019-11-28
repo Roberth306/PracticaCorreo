@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">contactos</string>
+    <string name="navigation_drawner_open">abrir</string>
+    <string name="navigation_drawber_close">cerrar</string>
 </resources>
