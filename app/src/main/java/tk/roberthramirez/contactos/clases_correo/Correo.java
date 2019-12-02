@@ -85,7 +85,7 @@ public class Correo implements Serializable, Comparable<Correo> {
     }
 
     public String fechaToString() {
-        sdf = new SimpleDateFormat("dd MMM hh:mm");
+        sdf = new SimpleDateFormat("dd MMM HH:mm");
         return sdf.format(this.enviadoEl.getTime());
     }
 

@@ -17,11 +17,11 @@
         android:id="@+id/tvNavNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="Example" />
 
     <TextView
         android:id="@+id/tvNavApellido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="example@example.com" />
 </LinearLayout>
